@@ -4,12 +4,14 @@ import lombok.Builder;
 
 public class ProductXmlParse {
 
+    private int id;
     private String productName;
     private Long productPrice;
     private String detailPageUrl;
 
     @Builder
     public ProductXmlParse(
+            int id,
             /*Long productCode,*/Long productPrice, String productName,
 //            String productImage,
 //            String seller,Long rate,
@@ -18,6 +20,7 @@ public class ProductXmlParse {
 //            Long buySatisfy
     ){
 //        this.productCode=productCode;
+        this.id=id;
         this.productPrice=productPrice;
         this.productName=productName;
 //        this.productImage=productImage;
