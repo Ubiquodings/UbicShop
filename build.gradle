@@ -68,4 +68,8 @@ dependencies {
     runtime('org.glassfish.jaxb:jaxb-runtime:2.3.0')
     runtime('javax.activation:activation:1.1.1')
 
+    // websocket
+    compile('org.springframework.boot:spring-boot-starter-websocket')
+    compile('org.webjars:stomp-websocket:2.3.3')
+
 }
