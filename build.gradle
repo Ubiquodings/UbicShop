@@ -73,4 +73,6 @@ dependencies {
     compile('org.webjars:stomp-websocket:2.3.3')
 
 //    compile('org.springframework.boot:spring-boot-starter-kafka')
+
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
 }

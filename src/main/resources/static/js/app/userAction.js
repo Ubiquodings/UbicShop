@@ -21,7 +21,11 @@ var userAction = {
             _this.click(productListIndex, productName);
         });
 
-        this.connectAndSubscribe();
+        setTimeout(function() {
+            console.log('Works!');
+            _this.connectAndSubscribe();
+        }, 1000);
+        // this.connectAndSubscribe();
     },
 
     subscribeWSMessage: function(){
