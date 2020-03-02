@@ -24,7 +24,7 @@ var userAction = {
         setTimeout(function() {
             console.log('Works!');
             _this.connectAndSubscribe();
-        }, 1000);
+        }, 4000); // TODO -- 구글 로그인이랑 웹소켓 연결이랑 동시에 실행되면서 인증 리다이렉트 제어 안된다
         // this.connectAndSubscribe();
     },
 
