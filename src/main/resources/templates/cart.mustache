@@ -1,0 +1,29 @@
+{{>layout/header}}
+
+<div>
+    <div class="row">
+        <h1>장바구니 조회내역 입니다</h1>
+    </div>
+
+    <div class="row">
+        <div class="chart">
+            <table class="table table-horizontal table-bordered">
+                <thead class="thead-strong">
+                <tr>
+                    <th>상품</th>
+                    <th>가격</th>
+                    <!--<th>넣은 시간</th>-->
+                </tr>
+                </thead>
+                <tbody id="tbody">
+                    <tr>
+                        <td>{{products.productName}}</td>
+                        <td id="cart_productPrice">{{products.productPrice}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{{>layout/footer}}

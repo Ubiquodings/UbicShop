@@ -1,0 +1,48 @@
+{{>layout/header}}
+
+
+<div class="col-md-12">
+    <!--제목-->
+    <div class="row">
+        <h1>hello Ubic</h1>
+    </div>
+
+    <!--검색어 입력창-->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <input type="text" id="keyword" class="form-control" placeholder="검색어 입력"
+                       aria-label="Recipient's username" aria-describedby="btn-search">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="btn-search">Button</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--리스트-->
+    {{#productList}}
+
+        <div class="row">
+
+
+            <!--{{detailPageUrl}} {{id}}-->
+
+            <div class="card " style="width: 100%;" ><!--style="width: 18rem;"-->
+                <!-- location.href='/products/{{id}}'; -->
+                <div class="card-body" > <!-- onclick="userAction.click({{id}}, {{productName}})" -->
+                    <h5 class="card-title">{{productName}}</h5>
+                    <h6 class="card-subtitle text-muted">{{productPrice}}</h6><!-- mb-2-->
+                    <input type="hidden" value="{{id}}"/>
+<!--
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+-->
+                </div>
+            </div>
+        </div>
+    {{/productList}}
+
+</div>
+
+{{>layout/footer}}
