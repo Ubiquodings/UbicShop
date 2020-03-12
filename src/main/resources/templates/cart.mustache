@@ -1,0 +1,25 @@
+{{>layout/header}}
+
+<!--리스트-->
+{{#productList}}
+
+    <div class="row">
+
+
+        <!--{{detailPageUrl}} {{id}}-->
+
+        <div class="card " style="width: 100%;" ><!--style="width: 18rem;"-->
+            <!-- location.href='/products/{{id}}'; -->
+            <div class="card-body" > <!-- onclick="userAction.click({{id}}, {{productName}})" -->
+                <h5 class="card-title">{{productName}}</h5>
+                <h6 class="card-subtitle text-muted">{{productPrice}}</h6><!-- mb-2-->
+                <input type="hidden" value="{{id}}"/>
+                <!--
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                -->
+            </div>
+        </div>
+    </div>
+{{/productList}}
+
+{{>layout/footer}}

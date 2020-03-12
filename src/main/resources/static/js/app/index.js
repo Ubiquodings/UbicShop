@@ -3,7 +3,15 @@ var index = {
         var _this = this;
         $('#btn-search').on('click', function(){
             _this.search();
-        })
+        });
+
+    },
+
+    addCart:function(){
+        $('#btn-cart').on('click', function(){
+            this.addCart();
+        });
+        console.log("Add Cart");
     },
 
     search : function(){ // TODO ?keyword={keyword} 로 변경하기
