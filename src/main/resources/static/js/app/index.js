@@ -13,7 +13,7 @@ var index = {
         });
         console.log("Add Cart");
     },
-
+//
     search : function (jQuery = $('#keyword').val()) { // TODO ?keyword={keyword} 로 변경하기
         var keyword = jQuery;
         // console.log('\n'+keyword+'\n'); 콘솔에 출력안되는듯!
