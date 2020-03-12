@@ -42,6 +42,7 @@ public class IndexController {
         return "cart";
     }
 
+
 //    @PostMapping("/")
 //    public String list() {
 //        // TODO: 상품 api 요청 코드 작성

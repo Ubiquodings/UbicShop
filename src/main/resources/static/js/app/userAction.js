@@ -26,7 +26,7 @@ var userAction = {
             _this.click_cart();
         })
 
-        this.connectAndSubscribe();
+       this.connectAndSubscribe();
     },
 
     subscribeWSMessage: function(){

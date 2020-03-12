@@ -4,6 +4,9 @@
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="11">
+      <module name="shoppingmall.main" target="1.8" />
+      <module name="shoppingmall.test" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
