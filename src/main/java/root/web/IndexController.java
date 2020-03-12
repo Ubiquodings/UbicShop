@@ -35,10 +35,10 @@ public class IndexController {
     }
 
     @GetMapping("/products/cart")
-    public String cart(Model model, @RequestBody) {
+    public String cart(Model model, @RequestBody ProductXmlParse productXmlParse) {
         //ProductXmlParse productCart = productsService.getProductList().get(id);
         //ProductXmlParse productCart = productsService.getProductList();
-        model.addAttribute("products", );
+        model.addAttribute("products", productXmlParse);
         return "cart";
     }
 
