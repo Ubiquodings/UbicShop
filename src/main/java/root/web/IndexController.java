@@ -1,6 +1,8 @@
 package root.web;
 
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +15,12 @@ import root.web.dto.ProductXmlParse;
 
 import javax.servlet.http.HttpSession;
 
+//@NoArgsConstructor
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
 
+    @Autowired
     private final ProductsService productsService;
 //    private final HttpSession httpSession;
 

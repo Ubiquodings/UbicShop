@@ -3,12 +3,41 @@ var stompClient = null;
 
 var userAction = {
     init: function(){
-        var _this = this;
+        const _this = this;
+
+        $("#btn-shoplist").on('click',function(e){ // detail 페이지에서 가져와야지
+            var data = {
+                type: 'shoplist',
+                // time: new Date().toString(),
+                productName: $('#item-name').val()//itemName
+            };
+            // console.log($('#item-name').val()); // ok
+            $.ajax({
+                type: 'POST',
+                url: '/api/v1/kafka',
+                dataType: 'json',
+                contentType:'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            });
+            window.location.href='/';
+        });
+        $("#btn-order").on('click',function(e){
+            var data = {
+                type: 'order',
+                // time: new Date().toString(),
+                productName: $('#item-name').val()
+            };
+            $.ajax({
+                type: 'POST',
+                url: '/api/v1/kafka',
+                dataType: 'json',
+                contentType:'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            });
+            window.location.href='/';
+        });
+
         $('div.card-body').on('click', function(e){ // TODO: id, name 은 어떻게 전달하지 ?
-            // GetContent("xxx");
-            // alert(this.childElementCount);
-            /* this.childElementCount */
-            // alert(this.children[2].value); // product name ? ok
             /*
             product name:  this.children[0].innerHTML
             product price: this.children[1].innerHTML
@@ -16,7 +45,7 @@ var userAction = {
             */
             var productName = this.children[0].innerHTML;
             var productPrice = this.children[1].innerHTML;
-            var productListIndex = this.children[2].value - 1;
+            var productListIndex = this.children[2].value;// 상품 하드코딩하니까.. - 1;
 
             _this.click(productListIndex, productName);
         });
@@ -29,7 +58,7 @@ var userAction = {
     },
 
     subscribeWSMessage: function(){
-        var _this = this;
+        const _this = this;
         console.log('userAction : subscribeMessage');
 
         stompClient.subscribe(
@@ -70,16 +99,25 @@ var userAction = {
         console.log('userAction : click');
 
         var data = {
-            actionType: 'click',
-            time: new Date().toString(),
-            item: itemName
+            type: 'click',
+            // time: new Date().toString(),
+            productName: itemName
         };
+        //
+        // stompClient.send(
+        //     '/action', {},
+        //     JSON.stringify(data)
+        // );
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/kafka',
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        });
 
-        stompClient.send(
-            '/action', {},
-            JSON.stringify(data)
-        );
 
+            // 페이지 이동
         window.location.href='/products/'+id; // TODO : 화면 이동 없이 구독 콜백 확인해보자
     }
 

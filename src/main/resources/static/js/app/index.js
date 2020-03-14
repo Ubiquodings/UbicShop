@@ -24,12 +24,13 @@ var index = {
             contentType: 'application/json; charset=utf-8'
 
         }).done(function(){
+            // alert('검색 요청 완료');
+            window.location.href='/'; // TODO: reload 를 내가 한 게 아닐까 ? 근데 reload 안하면 출력안되는데..
             alert('검색 요청 완료');
-            window.location.href='/' // TODO: reload 를 내가 한 게 아닐까 ? 근데 reload 안하면 출력안되는데..
         }).fail(function(error){
             // alert('검색 요청 실패\n'+error.toString()+'\n'+error.);
             // TODO; 잘됐는데 실패라고 하는 이유가 뭐지 ?
-            window.location.href='/'
+            window.location.href='/';
         });
     }
 };

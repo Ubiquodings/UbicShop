@@ -18,6 +18,7 @@ import root.web.dto.ProductsSaveRequestDto;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.xml.sax.SAXException;
@@ -35,7 +36,7 @@ public class ProductsService {
 
     private final ProductsRepository productsRepository;
 
-    @Autowired
+//    @Autowired
     RestTemplate restTemplate;
 
     // TODO: 어디서 검색하지 ? list 하면 검색해야지!
@@ -58,7 +59,15 @@ public class ProductsService {
         return productList;
     }
 
-    List<ProductXmlParse> productList = null;
+    ProductXmlParse[] productArray = {
+            new ProductXmlParse(0,22900L,"고당도 청송사과 5kg/10kg 아삭아삭한 부사","http://www.11st.co.kr/product/SellerProductDetail.tmall?method=getSellerProductDetail&prdNo=115849999"),
+            new ProductXmlParse(1,22900L,"[만족도최고]주왕산 털보네 하늘사과 흠과 9kg내외","http://www.11st.co.kr/product/SellerProductDetail.tmall?method=getSellerProductDetail&prdNo=1418504992"),
+            new ProductXmlParse(2,10900L,"하루한봉! 농협이 만든 세척사과 2.5kg","http://www.11st.co.kr/product/SellerProductDetail.tmall?method=getSellerProductDetail&prdNo=1830465505"),
+            new ProductXmlParse(3,6900L,"늘품 햇 꿀맛 부사 사과 5kg, 10kg","http://www.11st.co.kr/product/SellerProductDetail.tmall?method=getSellerProductDetail&prdNo=2607791441"),
+            new ProductXmlParse(4,28000L,"청송사과(가을사과 부사)가정용10kg(22과-40과)","http://www.11st.co.kr/product/SellerProductDetail.tmall?method=getSellerProductDetail&prdNo=1397500779"),
+            new ProductXmlParse(5,15900L,"햇살가득 고랭지 세척사과 5kg","http://www.11st.co.kr/product/SellerProductDetail.tmall?method=getSellerProductDetail&prdNo=2561674911"),
+    };
+    List<ProductXmlParse> productList = Arrays.asList(productArray);//null;
     // DB 나 Session 에 저장을 해야 하나 ?
 
     public boolean isExistProductList() {
@@ -71,14 +80,17 @@ public class ProductsService {
         return false;
     }
 
+    String key = "2d032fa306d841860118fa99d9959d5b";
     @Transactional
     public void/*List<ProductsResponseDto>*/ list(String keyword) throws IOException, SAXException, ParserConfigurationException { // 상품 api 요청 기능
         productList = new ArrayList<>();
-        String url = "http://openapi.11st.co.kr/openapi/OpenApiService.tmall?key=20724c2228aa0d17d51b4b236fcf635d&apiCode=ProductSearch&keyword="
-                + keyword + "&pageSize=10";
+//        String key = "2d032fa306d841860118fa99d9959d5b";
+        String url = "http://openapi.11st.co.kr/openapi/OpenApiService.tmall?key="+key+"&apiCode=ProductSearch&keyword="+ keyword + "&pageSize=10";
 //        WebClient client = WebClient.create(url);
 
+        LOGGER.warn("\n"+url+"\n");
         String xmlString = restTemplate.getForObject(url, String.class);
+        LOGGER.warn("\n"+xmlString+"\n");
         parseXmlHttpResponse(xmlString);
 
     }

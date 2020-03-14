@@ -75,4 +75,6 @@ dependencies {
 //    compile('org.springframework.boot:spring-boot-starter-kafka')
 
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+
+    compile('org.springframework.session:spring-session-jdbc')
 }
