@@ -5,5 +5,51 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/earlyaccess/jejumyeongjo.css');
+        * { font-family: 'Jeju Myeongjo', serif; }
+
+        footer{
+            background-color: #505050;
+            color: #d5d5d5;
+            padding: 1.8rem;
+        }
+        hr.light {
+            border-top: 1px solid #d5d5d5;
+            width: 80%;
+            margin-top: .8rem;
+            margin-bottom: 1rem;
+        }
+        a.navbar-brand:hover{
+            background-color: #e0e0e0;
+        }
+
+
+    </style>
 </head>
-<body class="h-100">
+<body class="container h-100"><!-- py-5 my-3-->
+
+<div class="row">
+    <h1>hello Ubic</h1>
+</div>
+
+<nav class="px-4 justify-content-start navbar navbar-light bg-list my-2 border border-dark rounded">
+    <a class="navbar-brand" href="/">home</a>
+    <a class="navbar-brand" href="/products">list</a>
+<!--    <a class="navbar-brand" href="/write">write</a>-->
+
+    <!--로그인-->
+    {{#userName}} <!-- 로그인 했음 이름 출력 -->
+        Logged in as: <span id="user">{{userName}}</span>
+        <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+        <a href="/mypage" class="btn btn-info active" role="button">MyPage</a>
+        <a href="/carts" class="btn btn-info active" role="button">장바구니</a>
+        <a href="/orders" class="btn btn-info active" role="button">주문내역</a>
+    {{/userName}}
+    {{^userName}} <!-- 안했음 로그인 버튼 -->
+        <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+    {{/userName}}
+</nav>
+
+<!--<div class=" border px-5 my-3">-->

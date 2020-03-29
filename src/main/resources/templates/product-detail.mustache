@@ -1,4 +1,11 @@
 {{>layout/header}}
 product-detail
+{{#product}}
+    {{name}}
+    <input type="hidden" value="{{id}}" id="product-detail-id"/>
+{{/product}}
+
+<button type="button" class="btn btn-primary btn-lg" id="btn-shoplist">장바구니</button>
+<button type="button" class="btn btn-primary btn-lg" id="btn-order">바로주문</button>
 
 {{>layout/footer}}

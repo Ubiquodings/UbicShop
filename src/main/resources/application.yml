@@ -1,13 +1,18 @@
+database: hsqldb
 spring:
+  profiles.include: oauth
+  session.store-type: jdbc
+
   datasource:
     url: jdbc:h2:tcp://localhost/~/sisishop
     username: sa
     password:
     driver-class-name: org.h2.Driver
+#    data: classpath*:db/${database}/data.sql # db data 초기화하고 싶을 때 이용
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update #create
     properties:
       hibernate:
   #     show_sql: true
@@ -16,3 +21,7 @@ spring:
 logging.level:
   org.hibernate.SQL: debug
 # org.hibernate.type: trace
+
+
+# spring.profiles.include=oauth
+#spring.session.store-type: jdbc
