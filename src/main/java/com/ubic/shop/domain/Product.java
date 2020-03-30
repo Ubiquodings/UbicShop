@@ -3,6 +3,9 @@ import com.ubic.shop.exception.NotEnoughStockException;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @NoArgsConstructor
 @Entity
 @Getter
@@ -18,9 +21,15 @@ public class Product extends BaseTimeEntity {
     private int price;
     private int stockQuantity;
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "order_id")
-//    private ProductCategory productCategory;
+    @OneToMany
+    @JoinColumn(name = "order_id")
+    private List<ProductCategory> productCategories = new ArrayList<>();
+
+    //==연관관계 메서드==//
+    public void addProductCategory(ProductCategory productCategory) {
+        productCategories.add(productCategory);
+        productCategory.setProduct(this);
+    }
 
     //==비즈니스 로직==//
     public void addStock(int quantity) {

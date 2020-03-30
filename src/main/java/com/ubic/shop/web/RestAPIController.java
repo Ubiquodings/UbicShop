@@ -1,30 +1,43 @@
 package com.ubic.shop.web;
 
 import com.ubic.shop.config.LoginUser;
-import com.ubic.shop.dto.ProductResponseDto;
-import com.ubic.shop.dto.ProductSaveRequestDto;
-import com.ubic.shop.dto.SessionUser;
-import com.ubic.shop.service.OrderService;
-import com.ubic.shop.service.ProductService;
-import com.ubic.shop.service.ShopListService;
+import com.ubic.shop.domain.Product;
+import com.ubic.shop.domain.ProductCategory;
+import com.ubic.shop.dto.*;
+import com.ubic.shop.repository.CategoryRepository;
+import com.ubic.shop.service.*;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RequiredArgsConstructor
 @RestController
 public class RestAPIController {
 
+    Logger logger = LoggerFactory.getLogger(RestAPIController.class);
+
     private final ProductService productService;
     private final ShopListService shopListService;
     private final OrderService orderService;
+    private final ProductCategoryService productCategoryService;
+    private final CategorySevice categoryService;
 
     @PostMapping("/products/new")
     public ProductResponseDto save(@RequestBody ProductSaveRequestDto requestDto){
-        return productService.saveProduct(requestDto.toEntity());
+//        logger.info("\n"+requestDto.getCategoryList()+"\n"); // ok
+        return productService.saveProduct(requestDto);
+    }
+
+    @PostMapping("/categories/new")
+    public CategoryResponseDto save(@RequestBody CategorySaveRequestDto requestDto){
+        logger.info("\n"+requestDto.getName()+"\n");
+        return new CategoryResponseDto(categoryService.saveCategory(requestDto));
     }
 
     @PostMapping("/carts/new/{id}") // TODO  restful 하진 않다

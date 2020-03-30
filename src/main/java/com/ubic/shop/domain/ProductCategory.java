@@ -27,4 +27,11 @@ public class ProductCategory extends BaseTimeEntity {
     @JoinColumn(name = "category_id")
     private Category category; //주문
 
+    //==생성 메서드==//
+    public static ProductCategory createProductCategory(Product product, Category category) {
+        ProductCategory productCategory = new ProductCategory();
+        productCategory.setProduct(product);
+        productCategory.setCategory(category);
+        return productCategory;
+    }
 }

@@ -1,9 +1,6 @@
 package com.ubic.shop.domain;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 //import org.springframework.data.annotation.Id;
 
 import javax.persistence.Column;
@@ -23,4 +20,10 @@ public class Category extends BaseTimeEntity {
     private Long id;
 
     private String name;
+
+    @Builder
+    public Category(String name) {
+        this.name = name;
+    }
+
 }

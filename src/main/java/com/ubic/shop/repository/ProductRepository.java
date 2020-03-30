@@ -20,7 +20,7 @@ public class ProductRepository {
         }/* else { // 변경 감지로 사용하라고 했다
             em.merge(product);
         }*/
-        return new ProductResponseDto(product);
+        return new ProductResponseDto(product); // 여기서는 product 반환하고, 컨트롤러에서 new 하면 되지 않나 ?
     }
 
     public Product findOne(Long id) {
