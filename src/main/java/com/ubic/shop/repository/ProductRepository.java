@@ -1,6 +1,7 @@
 package com.ubic.shop.repository;
 
 import com.ubic.shop.domain.Product;
+import com.ubic.shop.domain.Product;
 import com.ubic.shop.dto.ProductResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -29,5 +30,12 @@ public class ProductRepository {
     
     public List<Product> findAll() {
         return em.createQuery("select i from Product i",Product.class).getResultList();
+    }
+
+    public List<Product> findByName(String name) {
+        return em.createQuery("select m from Product m where m.name = :name", Product.class)
+                .setParameter("name", name)
+                .getResultList()/*.get(0)*/;
+
     }
 }

@@ -10,10 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RequiredArgsConstructor
@@ -50,8 +47,9 @@ public class RestAPIController {
             // 장바구니 저장
             shopListService.shopList(user.getId(), productId, 1);
         }
-        return "";
+        return "{}";
     }
+    // 빈 데이터 리턴도 json 형태로 해야 한다! -- 이유 :: https://vvh-avv.tistory.com/159
 
     @PostMapping("/orders/new/{id}") // TODO  restful 하진 않다
     public String order(@PathVariable(name = "id") Long productId, Model model, @LoginUser SessionUser user){
@@ -63,8 +61,19 @@ public class RestAPIController {
             // 장바구니 저장
             orderService.order(user.getId(), productId, 1);
         }
-        return "";
+        return "{}";
     }
 
+    // 주문 취소 로직
+    @DeleteMapping("/orders/{id}")
+    public String detail(@PathVariable Long id, Model model, @LoginUser SessionUser user){
+        orderService.cancelOrder(id);
+//        if(user != null){
+//            model.addAttribute("userName", user.getName());
+//        }
+        // 취소 어떻게 하랬더라 ?
+        // order id 로 아이템 가져와서 remove ?
+        return "{}";
+    }
 
 }

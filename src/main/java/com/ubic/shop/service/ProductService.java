@@ -1,5 +1,6 @@
 package com.ubic.shop.service;
 
+import com.ubic.shop.domain.Category;
 import com.ubic.shop.domain.Product;
 import com.ubic.shop.domain.ProductCategory;
 import com.ubic.shop.dto.ProductResponseDto;
@@ -24,9 +25,18 @@ public class ProductService {
     @Transactional
     public ProductResponseDto saveProduct(ProductSaveRequestDto productDto) {
         Product product = productDto.toEntity();
+        validateDuplicateProduct(product); //중복 상품 검증
         // 여기까지 dto 끌고 들어와서, category list 처리 ?
+        ProductResponseDto productResponseDto = productRepository.save(product);
         productCategoryService.saveCategoryList(productDto.getCategoryList(), product);
-        return productRepository.save(product);
+        return productResponseDto;
+    }
+
+    private void validateDuplicateProduct(Product product) {
+        List<Product> findProductList = productRepository.findByName(product.getName());
+        if (!findProductList.isEmpty()) {
+            throw new IllegalStateException("이미 존재하는 상품입니다.");
+        }
     }
 
     public List<Product> findAllProducts() {

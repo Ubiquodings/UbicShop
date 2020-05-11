@@ -16,11 +16,13 @@ public class OrderController {
     private final OrderService orderService;
 
     @GetMapping("/orders")
-    public String list(Model model, @LoginUser SessionUser user){
+    public String list(Model model, @LoginUser SessionUser user){ // 화면 :: 채민
         if(user != null){
             model.addAttribute("userName", user.getName());
-            model.addAttribute("shopLists", // List<Order>
-                    orderService.findAllOrders(user.getId()));
+            model.addAttribute("shopLists", // List<Order> -- Order :: createdDate
+//                    orderService.findAllOrders(user.getId()) // ordered/canceled 모두 포함
+                    orderService.findAllOrdered(user.getId()) // ordered 만 포함
+            ); // order status 가 order 인 것만 가져와야 겠는데 ?
         }
         return "order-list";
     }

@@ -1,6 +1,15 @@
 {{>layout/header}}
 product-detail
-{{#product}}
+
+<!--
+- 상품 이름 :  product.name
+- 가격 :  product.price
+- 상품 간단 설명 & 중량용량 & 구매수량 :: 다음에...
+
+개수에 따른 총 상품 금액 은 프론트에서 이벤트로 처리해야 할 로직인듯 !
+-->
+
+{{#product}} <!-- Product -->
     {{name}}
     <input type="hidden" value="{{id}}" id="product-detail-id"/>
 {{/product}}

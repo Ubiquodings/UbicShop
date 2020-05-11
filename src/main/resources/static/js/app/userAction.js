@@ -2,6 +2,25 @@ var userAction = {
     init: function(){
         var _this = this;
 
+        $("#btn-order-cancel").on('click',function(e){ // detail 페이지에서 가져와야지
+            $.ajax({
+                type: 'DELETE',
+                url: '/orders/'+ $("input#input-order-id").val(), // order id
+                dataType: 'json',// Accept ?
+                contentType:'application/json; charset=utf-8',
+                // data: JSON.stringify({}) // TODO 간단하게 url param 으로 대체
+            }).done(function() {
+                alert('삭제되었습니다.');
+                window.location.href=window.location.href;
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
+            // .done(function(){ // 왜 안되지 ?
+            //     alert('ok');
+            // });
+            // window.location.href=window.location.href;
+        });
+
         $("#btn-shoplist").on('click',function(e){ // detail 페이지에서 가져와야지
             $.ajax({
                 type: 'POST',
@@ -47,7 +66,6 @@ var userAction = {
             product name:  this.children[0].innerHTML
             product price: this.children[1].innerHTML
             product list index: this.children[2].value
-
             */
             var productName = this.children[0].innerHTML;
             var productPrice = this.children[1].innerHTML;

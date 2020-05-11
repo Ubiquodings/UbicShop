@@ -26,10 +26,15 @@ public class ProductCategoryService {
 
         for(String categoryName : categoryList){
             // category name 으로 entity 가져오기
-            Category category = categoryRepository.findByName(categoryName);
+            List<Category> findCategoryList = categoryRepository.findByName(categoryName);
             // product 에 add category
-            ProductCategory productCategory = ProductCategory.createProductCategory(product, category);
-            product.addProductCategory(productCategory);
+            if (!findCategoryList.isEmpty()) {
+                ProductCategory productCategory = ProductCategory.createProductCategory(
+                        product, findCategoryList.get(0));
+                productCategoryRepository.save(productCategory);
+//                em.persist(productCategory);
+                product.addProductCategory(productCategory);
+            }
         }
     }
 

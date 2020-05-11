@@ -45,11 +45,16 @@ public class OrderService {
     public void cancelOrder(Long orderId) {
         //주문 엔티티 조회
         Order order = orderRepository.findOne(orderId);
-        //주문 취소
+        //주문 취소 -- order 만 삭제하고 order product 는 삭제 안하는데 ? -- 그래서 status 로 필터링 로직 추가했다
         order.cancel();
     }
 
     public List<Order> findAllOrders(Long userId) {
         return orderRepository.findAll(userId);
     }
+
+    public List<Order> findAllOrdered(Long userId) {
+        return orderRepository.findAllOrdered(userId);
+    }
+
 }

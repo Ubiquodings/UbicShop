@@ -16,7 +16,7 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/products")
-    public String list(Model model, @LoginUser SessionUser user){
+    public String list(Model model, @LoginUser SessionUser user){ // 화면 :: 윤진
         model.addAttribute("products", productService.findAllProducts());
         if(user != null){
             model.addAttribute("userName", user.getName());
