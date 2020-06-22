@@ -1,6 +1,7 @@
 package com.ubic.shop.web;
 
 import com.ubic.shop.config.LoginUser;
+import com.ubic.shop.domain.Category;
 import com.ubic.shop.domain.Product;
 import com.ubic.shop.domain.ProductCategory;
 import com.ubic.shop.dto.*;
@@ -27,13 +28,16 @@ public class RestAPIController {
 
     @PostMapping("/products/new")
     public ProductResponseDto save(@RequestBody ProductSaveRequestDto requestDto){
-//        logger.info("\n"+requestDto.getCategoryList()+"\n"); // ok
-        return productService.saveProduct(requestDto);
+        logger.info("\n"+requestDto.toString()+"\n"); // ok
+        Category category = categoryService.getCategoryById(requestDto.getCategoryId());
+//        Product product = requestDto.toEntity(category);
+//        product.set
+        return productService.saveProduct(requestDto, category);
     }
 
     @PostMapping("/categories/new")
     public CategoryResponseDto save(@RequestBody CategorySaveRequestDto requestDto){
-        logger.info("\n"+requestDto.getName()+"\n");
+        logger.info("\n"+requestDto.toString());
         return new CategoryResponseDto(categoryService.saveCategory(requestDto));
     }
 

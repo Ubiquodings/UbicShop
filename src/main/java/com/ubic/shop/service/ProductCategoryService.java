@@ -24,18 +24,18 @@ public class ProductCategoryService {
 
     public void saveCategoryList(List<String> categoryList, Product product) {
 
-        for(String categoryName : categoryList){
-            // category name 으로 entity 가져오기
-            List<Category> findCategoryList = categoryRepository.findByName(categoryName);
-            // product 에 add category
-            if (!findCategoryList.isEmpty()) {
-                ProductCategory productCategory = ProductCategory.createProductCategory(
-                        product, findCategoryList.get(0));
-                productCategoryRepository.save(productCategory);
-//                em.persist(productCategory);
-                product.addProductCategory(productCategory);
-            }
-        }
+//        for(String categoryName : categoryList){
+//            // category name 으로 entity 가져오기
+//            List<Category> findCategoryList = categoryRepository.findByName(categoryName);
+//            // product 에 add category
+//            if (!findCategoryList.isEmpty()) {
+//                ProductCategory productCategory = ProductCategory.createProductCategory(
+//                        product, findCategoryList.get(0));
+//                productCategoryRepository.save(productCategory);
+////                em.persist(productCategory);
+//                product.addProductCategory(productCategory);
+//            }
+//        }
     }
 
 //    @Transactional

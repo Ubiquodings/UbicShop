@@ -3,10 +3,8 @@ package com.ubic.shop.domain;
 import lombok.*;
 //import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 //import javax.persistence.Id;
 @NoArgsConstructor
 @Entity
@@ -20,9 +18,14 @@ public class Category extends BaseTimeEntity {
     private Long id;
 
     private String name;
+    private Long kurlyId;
+
+    @OneToOne(mappedBy = "category", fetch = FetchType.LAZY)
+    private Product product;
 
     @Builder
-    public Category(String name) {
+    public Category(long kurlyId,String name) {
+        this.kurlyId = kurlyId;
         this.name = name;
     }
 

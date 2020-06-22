@@ -60,17 +60,18 @@ var userAction = {
             // window.location.href='/';
         });
 
-        $('div#product-list-card-body').on('click', function(e){ // TODO: id, name 은 어떻게 전달하지 ?
+        $('div.product-list-card-body').on('click', function(e){ // TODO: id, name 은 어떻게 전달하지 ?
 
             /*
             product name:  this.children[0].innerHTML
             product price: this.children[1].innerHTML
             product list index: this.children[2].value
             */
-            var productName = this.children[0].innerHTML;
-            var productPrice = this.children[1].innerHTML;
+            // var productName = this.children[0].innerHTML;
+            // var productPrice = this.children[1].innerHTML;
             // var productListIndex = this.children[2].value;// 상품 하드코딩하니까.. - 1;
-            var productId = this.children[2].value;
+            var productId = this.children[0].value;
+            console.log(productId);
             // _this.click(productId, productName);
             _this.clickItem(productId);
         });

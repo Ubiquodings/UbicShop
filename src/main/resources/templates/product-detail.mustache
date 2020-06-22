@@ -17,4 +17,35 @@ product-detail
 <button type="button" class="btn btn-primary btn-lg" id="btn-shoplist">장바구니</button>
 <button type="button" class="btn btn-primary btn-lg" id="btn-order">바로주문</button>
 
+<div class="row">
+    {{#recommendedList}}
+        <div class="col-md-3 product-list-card-body" >
+            <input type="hidden" value="{{id}}"/>
+            <div class="ibox">
+                <div class="ibox-content product-box">
+                    <div class="product-imitation">
+                        <img src="{{imgUrl}}"/>
+                        <!--[ 사진 ]-->
+                    </div>
+                    <div class="product-desc">
+                    <span class="product-discount">
+                        save 10%
+                    </span>
+                        <a href="#" class="product-name">{{name}}</a>
+                        <small class="product-price">{{price}}</small>
+                        <div class="small m-t-xs description" >
+                            <!--영양 가득한 흑미 즉석밥! 설명 연결~-->
+                            {{description}}
+                        </div>
+                        <div class="m-t text-left">
+                            <a href="#" class="btn btn-xs btn-outline btn-success" style="margin-top: 10px">장바구니 </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/recommendedList}}
+</div>
+
+
 {{>layout/footer}}

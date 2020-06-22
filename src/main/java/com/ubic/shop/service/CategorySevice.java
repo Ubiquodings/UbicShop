@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -25,10 +26,22 @@ public class CategorySevice {
     }
 
     private void validateDuplicateCategory(Category category) {
-        List<Category> findCategoryList = categoryRepository.findByName(category.getName());
-        if (!findCategoryList.isEmpty()) {
+//        List<Category> findCategoryList
+        Optional<Category> optionalCategory = categoryRepository.findById(category.getKurlyId());
+        if(optionalCategory.isPresent()){ // 존재한다
             throw new IllegalStateException("이미 존재하는 카테고리입니다.");
         }
+//        if (result != null) {
+//            throw new IllegalStateException("이미 존재하는 카테고리입니다.");
+//        }
+    }
+
+    public Category getCategoryById(Long categoryId){
+        Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
+        if(optionalCategory.isPresent()){ // 존재한다
+            return optionalCategory.get();
+        }
+        return null;
     }
 
 }

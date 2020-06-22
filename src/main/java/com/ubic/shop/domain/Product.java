@@ -19,16 +19,23 @@ public class Product extends BaseTimeEntity {
 
     private String name;
     private int price;
-    private int stockQuantity;
+    private int stockQuantity=50;
 
-    @OneToMany
-    @JoinColumn(name = "order_id")
-    private List<ProductCategory> productCategories = new ArrayList<>();
+    private String description;
+    private String imgUrl;
+
+//    @OneToMany
+//    @JoinColumn(name = "order_id")
+//    private List<ProductCategory> productCategories = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
+
 
     //==연관관계 메서드==//
     public void addProductCategory(ProductCategory productCategory) {
-        productCategories.add(productCategory);
-        productCategory.setProduct(this);
+//        productCategories.add(productCategory);
+//        productCategory.setProduct(this);
     }
 
     //==비즈니스 로직==//
@@ -46,10 +53,19 @@ public class Product extends BaseTimeEntity {
 
     // Entity 함부로 만들지 말라고 했다 ?
     @Builder
-    public Product(String name, int price, int stockQuantity) {
+    public Product(String name, int price, int stockQuantity, String description, /*Long categoryId,*/ String imgUrl,
+                   Category category) {
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
+        this.description = description;
+//        this.category.setId(categoryId); // 초기화 전 값 할당했다고 오류났다
+        this.imgUrl = imgUrl;
     }
+
+    //==생성 메서드==//
+//    public static Product createProduct(Category category){
+//        Product product = new Product();
+//    }
 
 }
