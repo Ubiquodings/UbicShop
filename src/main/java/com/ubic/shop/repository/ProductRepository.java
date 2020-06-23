@@ -18,7 +18,8 @@ import java.util.List;
 public interface ProductRepository extends CrudRepository<Product, Long> {
 
     List<Product> findByName(String name);
-    @Query(value="select * from Product limit 20", nativeQuery = true)
+
+    @Query(value="select * from Product limit 40", nativeQuery = true)
     List<Product> findDefaultProducts();
 //    List<Product> findAll();
 //    private final EntityManager em;

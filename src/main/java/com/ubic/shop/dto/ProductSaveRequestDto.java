@@ -27,7 +27,10 @@ public class ProductSaveRequestDto {
 
     public Product toEntity(Category category) {
 //        Category category =
-        return Product.builder()
+        /*
+        * String name, price, stockQuantity, description, imgUrl, category
+        * */
+        return Product.createProduct(name, price, stockQuantity, description, imgUrl, category);/*.builder()
                 .name(name)
                 .price(price)
                 .stockQuantity(stockQuantity)
@@ -35,7 +38,7 @@ public class ProductSaveRequestDto {
                 .imgUrl(imgUrl)
                 .category(category)
 //                .categoryId(categoryId) // 이게 된다고 ??
-                .build();
+                .build();*/
     }
 
     @Builder

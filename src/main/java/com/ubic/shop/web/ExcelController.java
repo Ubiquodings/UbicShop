@@ -57,7 +57,7 @@ public class ExcelController {
                 continue;
 
             ProductSaveRequestDto requestDto = ProductSaveRequestDto.builder()
-                    .categoryId((long) row.getCell(2).getNumericCellValue())
+                    .categoryId((long) row.getCell(1).getNumericCellValue())
                     .name(row.getCell(3).getStringCellValue())
                     .price((int) row.getCell(4).getNumericCellValue())
                     .stockQuantity(50)

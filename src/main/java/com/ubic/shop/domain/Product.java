@@ -53,19 +53,41 @@ public class Product extends BaseTimeEntity {
 
     // Entity 함부로 만들지 말라고 했다 ?
     @Builder
-    public Product(String name, int price, int stockQuantity, String description, /*Long categoryId,*/ String imgUrl,
+    public Product(String name, int price, int stockQuantity,
+                   String description, String imgUrl,
                    Category category) {
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
         this.description = description;
 //        this.category.setId(categoryId); // 초기화 전 값 할당했다고 오류났다
+        this.category = category; // 이렇게가 안먹히네!
         this.imgUrl = imgUrl;
     }
+/*
+*     //==생성 메서드==//
+    public static OrderProduct createOrderProduct(Product product, int orderPrice, int count) {
+        OrderProduct orderProduct = new OrderProduct();
+        orderProduct.setProduct(product); //
+        orderProduct.setOrderPrice(orderPrice);
+        orderProduct.setCount(count);
+        product.removeStock(count);
+        return orderProduct;
+    }
 
+* */
     //==생성 메서드==//
-//    public static Product createProduct(Category category){
-//        Product product = new Product();
-//    }
+    public static Product createProduct(String name, int price, int stockQuantity,
+                                        String description, String imgUrl,
+                                        Category category){
+        Product product = new Product();
+        product.setName(name);
+        product.setPrice(price);
+        product.setStockQuantity(stockQuantity);
+        product.setDescription(description);
+        product.setImgUrl(imgUrl);
+        product.setCategory(category);
+        return product;
+    }
 
 }

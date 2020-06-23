@@ -20,8 +20,8 @@ public class Category extends BaseTimeEntity {
     private String name;
     private Long kurlyId;
 
-    @OneToOne(mappedBy = "category", fetch = FetchType.LAZY)
-    private Product product;
+//    @OneToOne(mappedBy = "category", fetch = FetchType.LAZY)
+//    private Product product;
 
     @Builder
     public Category(long kurlyId,String name) {

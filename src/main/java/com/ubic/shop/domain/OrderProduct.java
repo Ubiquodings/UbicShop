@@ -27,7 +27,7 @@ public class OrderProduct extends BaseTimeEntity {
     //==생성 메서드==//
     public static OrderProduct createOrderProduct(Product product, int orderPrice, int count) {
         OrderProduct orderProduct = new OrderProduct();
-        orderProduct.setProduct(product);
+        orderProduct.setProduct(product); //
         orderProduct.setOrderPrice(orderPrice);
         orderProduct.setCount(count);
         product.removeStock(count);

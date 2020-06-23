@@ -11,11 +11,12 @@ product-detail
 
 {{#product}} <!-- Product -->
     {{name}}
-    <input type="hidden" value="{{id}}" id="product-detail-id"/>
-{{/product}}
+    <input type="hidden" value="{{id}}"/>
 
-<button type="button" class="btn btn-primary btn-lg" id="btn-shoplist">장바구니</button>
-<button type="button" class="btn btn-primary btn-lg" id="btn-order">바로주문</button>
+
+<button type="button" class="btn btn-primary btn-lg btn-shoplist"><input type="hidden" value="{{id}}"/>장바구니</button>
+<button type="button" class="btn btn-primary btn-lg btn-order"><input type="hidden" value="{{id}}"/>바로주문</button>
+{{/product}}
 
 <div class="row">
     {{#recommendedList}}

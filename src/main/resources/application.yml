@@ -1,6 +1,6 @@
 database: hsqldb
 spring:
-  profiles.include: oauth
+  profiles.include: oauth,kafka
   session.store-type: jdbc
 
   datasource:
@@ -12,7 +12,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update #create, create-drop
+      ddl-auto: update #create # , create-drop
     properties:
       hibernate:
   #     show_sql: true

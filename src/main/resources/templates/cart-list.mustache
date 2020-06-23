@@ -7,7 +7,7 @@ cart-list
                 <div class="card-body">
                     <h5 class="card-title">{{product.name}}</h5> <!--잘나온다!-->
                     <h5 class="card-title">{{count}}</h5>
-                    <button type="button" class="btn btn-primary btn-lg" id="btn-cart-order">주문</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-order"><input type="hidden" value="{{product.id}}"/>주문</button>
                     <input type="hidden" value="{{product.id}}" id="input-cart-order"/>
 <!--                    <a href="/orders/new/{{product.id}}" class="btn btn-info active" role="button">주문</a>-->
                 </div>
