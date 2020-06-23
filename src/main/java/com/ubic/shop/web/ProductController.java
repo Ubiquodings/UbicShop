@@ -31,12 +31,13 @@ public class ProductController {
     public String detail(@PathVariable Long id, Model model, @LoginUser SessionUser user){
         model.addAttribute("product", productService.findById(id));
 
-        model.addAttribute("recommendedList", recommendService.getRecommendList(user));
+//        model.addAttribute("recommendedList", recommendService.getRecommendList(user));
         // 반환값 : List<Product>
         // user id 기반으로
 
         if(user != null){
             model.addAttribute("userName", user.getName());
+            model.addAttribute("recommendedList", recommendService.getRecommendList(user));
         }
         return "product-detail";
     }

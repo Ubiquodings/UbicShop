@@ -21,6 +21,8 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
     @Query(value="select * from Product limit 40", nativeQuery = true)
     List<Product> findDefaultProducts();
+
+    List<Product> findByCategoryId(Long id);
 //    List<Product> findAll();
 //    private final EntityManager em;
 //
